@@ -34,7 +34,16 @@ public class Gallao : Entidade, IRodada {
 	 * 
 	 * [Grunhido, Goteira, Provas, Parede, DP Morto]
 	 */
+	
+	public Direction direction = Direction.down;
 
 	public void Rodada(){
+	}
+
+	public enum Direction{
+		down,
+		left,
+		up,
+		right
 	}
 }
