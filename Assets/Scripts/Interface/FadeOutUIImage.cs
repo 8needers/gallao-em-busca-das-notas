@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
+[RequireComponent(typeof(Image))]
 public class FadeOutUIImage : MonoBehaviour {
 
 	public float tempoAntesDoFade, tempoDeFade;
