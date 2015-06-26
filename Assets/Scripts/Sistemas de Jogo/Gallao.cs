@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Gallao : Entidade, IRodada {
@@ -44,10 +45,12 @@ public class Gallao : Entidade, IRodada {
 		set{
 			myScore = value;
 			Buttons.updateScore();
+			updateSensors();
 		}
 	}
 
-	public bool[,,,,] sensors = new bool[1,1,1,1,1];
+	public bool[] sensors = new bool[5];
+	public Text sensorText;
 
 	public int maxSize = 4;
 
@@ -125,6 +128,51 @@ public class Gallao : Entidade, IRodada {
 
 	bool isBlockedRight(){
 		return transform.position.x >= maxSize;
+	}
+
+	void updateSensors(){
+		sensors = new bool[5]{isDP(),isWater(),isTest(),isWall(),isDead()};
+		sensorText.text =
+			"[" + (isDP()?"x":"  ") + "] Grunhido\n" +
+				"[" + (isWater()?"x":"  ") + "] Goteira\n" +
+				"[" + (isTest()?"x":"  ") + "] Provas\n" +
+				"[" + (isWall()?"x":"  ") + "] Parede\n" +
+				"[" + (isDead()?"x":"  ") + "] DP Morto\n";
+	}
+
+	// Detectando parede
+	bool isWall(){
+		switch(direction){
+		case Direction.down:
+			return isBlockedDown();
+		case Direction.right:
+			return isBlockedRight();
+		case Direction.up:
+			return isBlockedUp();
+		case Direction.left:
+			return isBlockedLeft();
+		}
+		return false;
+	}
+
+	// Detectando grunhido
+	bool isDP(){
+		return false;
+	}
+
+	// Detectando provas
+	bool isTest(){
+		return false;
+	}
+
+	// Detectando poça
+	bool isWater(){
+		return false;
+	}
+
+	// Detectando monstro Morto
+	bool isDead(){
+		return false;
 	}
 
 	public enum Direction{
