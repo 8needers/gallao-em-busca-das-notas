@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Buttons : MonoBehaviour {
@@ -14,16 +15,23 @@ public class Buttons : MonoBehaviour {
 		}
 	}
 
+	public Text scoreText;
+	public static Buttons self;
+
+	void Awake(){
+		self = this;
+	}
+
 	public void turnAntiClockWise(){
-		gallao.direction -= 1;
-		if((int)gallao.direction < 0) gallao.direction = Gallao.Direction.right;
+		gallao.action_turnLeft();
 	}
 
 	public void turnClockWise(){
-		gallao.direction += 1;
-		if((int)gallao.direction > 3) gallao.direction = Gallao.Direction.down;
-		
+		gallao.action_turnRight();
 	}
 
+	public static void updateScore(){
+		self.scoreText.text = "Pontos: " + self.gallao.score.ToString();
+	}
 
 }

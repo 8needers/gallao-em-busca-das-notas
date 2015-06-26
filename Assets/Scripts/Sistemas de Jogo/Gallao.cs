@@ -36,8 +36,30 @@ public class Gallao : Entidade, IRodada {
 	 */
 	
 	public Direction direction = Direction.down;
+	public int myScore = 0;
+	public int score{
+		get{
+			return myScore;
+		}
+		set{
+			myScore = value;
+			Buttons.updateScore();
+		}
+	}
 
 	public void Rodada(){
+	}
+
+	public void action_turnLeft(){
+		direction -= 1;
+		if((int)direction < 0) direction = Gallao.Direction.right;
+		--score;
+	}
+		
+	public void action_turnRight(){
+		direction += 1;
+		if((int)direction > 3) direction = Gallao.Direction.down;
+		--score;
 	}
 
 	public enum Direction{
