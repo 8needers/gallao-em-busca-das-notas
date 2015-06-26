@@ -47,6 +47,8 @@ public class Gallao : Entidade, IRodada {
 		}
 	}
 
+	public bool[,,,,] sensors = new bool[1,1,1,1,1];
+
 	public int maxSize = 4;
 
 	void Start(){
