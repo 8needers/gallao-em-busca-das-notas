@@ -36,7 +36,7 @@ public class Gallao : Entidade, IRodada {
 	 */
 	
 	public Direction direction = Direction.down;
-	public int myScore = 0;
+	private int myScore = 0;
 	public int score{
 		get{
 			return myScore;
@@ -45,6 +45,12 @@ public class Gallao : Entidade, IRodada {
 			myScore = value;
 			Buttons.updateScore();
 		}
+	}
+
+	public int maxSize = 4;
+
+	void Start(){
+		maxSize = FindObjectOfType<CreateMap>().mapSize -1;
 	}
 
 	public void Rodada(){
@@ -60,6 +66,63 @@ public class Gallao : Entidade, IRodada {
 		direction += 1;
 		if((int)direction > 3) direction = Gallao.Direction.down;
 		--score;
+	}
+
+	public void action_walk(){
+		switch(direction){
+		case Direction.down:
+			walkDown();
+			break;
+		case Direction.left:
+			walkLeft();
+			break;
+		case Direction.up:
+			walkUp();
+			break;
+		case Direction.right:
+			walkRight();
+			break;
+		}
+	}
+
+	void walkDown(){
+		if(isBlockedDown()) return;
+		transform.position = new Vector3(transform.position.x,transform.position.y-1,transform.position.z);
+		--score;
+	}
+
+	void walkUp(){
+		if(isBlockedUp()) return;
+		transform.position = new Vector3(transform.position.x,transform.position.y+1,transform.position.z);
+		--score;
+	}
+
+	void walkLeft(){
+		if(isBlockedLeft()) return;
+		transform.position = new Vector3(transform.position.x-1,transform.position.y,transform.position.z);
+		--score;
+	}
+
+	void walkRight(){
+		if(isBlockedRight()) return;
+		transform.position = new Vector3(transform.position.x+1,transform.position.y,transform.position.z);
+		--score;
+	}
+
+	bool isBlockedDown(){
+		return transform.position.y <= 0;
+	}
+
+	bool isBlockedLeft(){
+		return transform.position.x <= 0;
+	}
+
+	bool isBlockedUp(){
+		return transform.position.y >= maxSize;
+	}
+
+	bool isBlockedRight(){
+		return transform.position.x >= maxSize;
 	}
 
 	public enum Direction{

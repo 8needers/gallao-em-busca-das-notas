@@ -30,6 +30,10 @@ public class Buttons : MonoBehaviour {
 		gallao.action_turnRight();
 	}
 
+	public void walkForward(){
+		gallao.action_walk();
+	}
+
 	public static void updateScore(){
 		self.scoreText.text = "Pontos: " + self.gallao.score.ToString();
 	}
