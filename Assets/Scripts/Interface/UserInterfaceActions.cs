@@ -11,14 +11,7 @@ public class UserInterfaceActions : MonoBehaviour {
 	/// <summary>
 	/// Abre a cena do jogo
 	/// </summary>
-	public void Jogar(){ Application.LoadLevel ("Jogo"); }
-
-	/// <summary>
-	/// Fecha o menu principal e abre o menu de configurações
-	/// </summary>
-	public void AbrirMenuDeConfiguracoes(){
-		// Eu não sei o que diabos deverá ser configurado
-	}
+	public void Jogar(){ Application.LoadLevel ("mainScene"); }
 
 	/// <summary>
 	/// Fecha o menu principal e abre a tela de créditos
