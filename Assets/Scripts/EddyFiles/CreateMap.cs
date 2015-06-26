@@ -10,12 +10,16 @@ public class CreateMap : MonoBehaviour
 
 		//==========IMAGES
 		List<Sprite> imageList = new List<Sprite> ();
+		
+		//==========OBJECTS
+		public static List<Entidade> entities = new List<Entidade>();
 
 		//==========PREFABS
 		public GameObject tilePrefab;
 		public GameObject wumpusPrefab;
 		public GameObject testPrefab;
 		public GameObject waterPrefab;
+		public int waterQuantity = 1;
 
 		//==========VARIABLES
 		/// <summary>
@@ -47,14 +51,12 @@ public class CreateMap : MonoBehaviour
 		}
 
 	void RandomizeElements(){
-		Wumpus mWumpus = new Wumpus ();
-		mWumpus = ((GameObject)Instantiate (wumpusPrefab, new Vector3 (Random.Range (2, mapSize), Random.Range (2, mapSize), 0f), Quaternion.Euler(new Vector3(0,0,0)))).GetComponent<Wumpus>();
+		entities.Add(((GameObject)Instantiate (wumpusPrefab, new Vector3 (Random.Range (1, mapSize), Random.Range (1, mapSize), 0f), Quaternion.Euler(new Vector3(0,0,0)))).GetComponent<Wumpus>());
 
-		Test mTest = new Test ();
-		mTest = ((GameObject)Instantiate (testPrefab, new Vector3 (Random.Range (2, mapSize), Random.Range (2, mapSize), 0f), Quaternion.Euler(new Vector3(0,0,0)))).GetComponent<Test>();
+		entities.Add(((GameObject)Instantiate (testPrefab, new Vector3 (Random.Range (1, mapSize), Random.Range (1, mapSize), 0f), Quaternion.Euler(new Vector3(0,0,0)))).GetComponent<Test>());
 
-		Water mWater = new Water ();
-		mWater = ((GameObject)Instantiate (waterPrefab, new Vector3 (Random.Range (2, mapSize), Random.Range (2, mapSize), 0f), Quaternion.Euler(new Vector3(0,0,0)))).GetComponent<Water>();
+		for(int i = 0; i < waterQuantity; ++i)
+			entities.Add(((GameObject)Instantiate (waterPrefab, new Vector3 (Random.Range (1, mapSize), Random.Range (1, mapSize), 0f), Quaternion.Euler(new Vector3(0,0,0)))).GetComponent<Water>());
 
 	}
 

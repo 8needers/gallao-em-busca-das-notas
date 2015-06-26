@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Water: MonoBehaviour
+public class Water: Entidade
 {
+
 }
 
